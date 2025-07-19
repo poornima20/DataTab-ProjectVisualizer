@@ -374,9 +374,26 @@ h1 {
     font-size: 1.1rem;
     margin-bottom: 5px;
 }
+.category-tag {
+    font-size:0.5rem;
+}
 
 .project-card p {
     font-size: 12px;
     opacity: 0.7;
 }
+}
+
+
+footer{
+  text-align: center;
+  padding: 12px 0 0; /* Top padding only (12px top, 0 bottom) */
+  color: #757575;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  border-top: 1px solid #e0e0e0;
+  margin-top: 20px; /* Space above footer */
+  padding: 0; /* Remove all padding */
+  border-top: none; /* Remove border if desired */
+  margin-top: 10px; /* Minimal space */
 }
