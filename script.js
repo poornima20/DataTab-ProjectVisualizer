@@ -15,6 +15,46 @@ document.addEventListener('DOMContentLoaded', function() {
     let draggedCard = null;
     let currentProject = null;
     let currentUrl = null;
+
+    // Initialize default content when page loads
+    showDefaultVisualizerContent();
+
+    function showDefaultVisualizerContent() {
+    // URL of the external page you want to display by default
+    const defaultUrl = 'https://poornima20.github.io/DataTab-Portfolio/';
+    
+    // Clear previous content
+    visualizerPlaceholder.innerHTML = '';
+    
+    // Create iframe with the same styling as project cards
+    const iframe = document.createElement('iframe');
+    iframe.src = defaultUrl;
+    iframe.style.width = '100%';
+    iframe.style.height = '70vh';
+    iframe.style.border = 'none';
+    iframe.style.zoom = '100%'; // Match the zoom level from project cards
+    iframe.style.pointerEvents = 'none'; // Allow clicks to pass through
+
+    // Add loading state
+    iframe.onload = () => {
+        visualizerPlaceholder.style.display = 'flex';
+    };
+    
+    iframe.onerror = () => {
+        visualizerPlaceholder.innerHTML = `
+            <div class="error">
+                <p>Drag to Preview the Projects!</p>
+                <small>Failed to load default content</small>
+            </div>
+        `;
+        visualizerPlaceholder.style.display = 'flex';
+    };
+    
+    visualizerPlaceholder.appendChild(iframe);
+    visualizerPlaceholder.style.display = 'flex';
+}
+
+
     
     // For title animation
     const titles = [
@@ -159,6 +199,7 @@ document.addEventListener('DOMContentLoaded', function() {
         visualizer.classList.remove('active');
         visualizerPlaceholder.style.display = 'flex';
         visualizerContent.innerHTML = '';
+        showDefaultVisualizerContent();
     }
     
     /* Open in New Tab */
