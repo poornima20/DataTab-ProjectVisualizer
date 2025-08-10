@@ -30,11 +30,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const iframe = document.createElement('iframe');
     iframe.src = defaultUrl;
     iframe.style.width = '100%';
-    iframe.style.height = '70vh';
+    iframe.style.height = '80vh';
     iframe.style.border = 'none';
-    iframe.style.zoom = '100%'; // Match the zoom level from project cards
     iframe.style.pointerEvents = 'none'; // Allow clicks to pass through
     iframe.style.overflow = 'hidden'; // Disable scrollbars
+
+    // ✅ Responsive zoom setting
+    if (window.innerWidth <= 768) {
+        // Mobile view
+        iframe.style.zoom = '75%';
+    } else {
+        // Desktop / larger screens
+        iframe.style.zoom = '90%';
+    }
 
     // Add loading state
     iframe.onload = () => {
