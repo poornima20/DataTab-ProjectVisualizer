@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
     iframe.style.border = 'none';
     iframe.style.zoom = '100%'; // Match the zoom level from project cards
     iframe.style.pointerEvents = 'none'; // Allow clicks to pass through
+    iframe.style.overflow = 'hidden'; // Disable scrollbars
 
     // Add loading state
     iframe.onload = () => {
