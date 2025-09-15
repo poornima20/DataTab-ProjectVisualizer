@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
     iframe.style.width = '100%';
     iframe.style.height = '80vh';
     iframe.style.border = 'none';
-    iframe.style.pointerEvents = 'none'; // Allow clicks to pass through
+    iframe.style.pointerEvents = 'allow'; // Allow clicks to pass through
     iframe.style.overflow = 'hidden'; // Disable scrollbars
 
     // ✅ Responsive zoom setting
