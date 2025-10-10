@@ -23,6 +23,10 @@ body {
   color: var(--black);
   min-height: 100vh;
 }
+html, body {
+  overscroll-behavior: none;
+}
+
 
 /* ==============================
    🧭 Header Section
@@ -235,6 +239,15 @@ h1 {
   padding-right: 20px;
   max-height: 60vh;
 }
+
+#projectsBanner {
+  transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: auto; /* stops momentum scroll on iOS */
+}
+
+
 
 /* When OPEN */
 .projects-banner.show {
@@ -462,6 +475,14 @@ body::-webkit-scrollbar {
 .projects-banner::-webkit-scrollbar {
   display: none;                 /* Chrome, Safari, Edge */
 }
+
+#dragHandle {
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+  cursor: grab;
+}
+
 
 
 

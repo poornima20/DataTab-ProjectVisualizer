@@ -75,18 +75,20 @@ document.addEventListener('DOMContentLoaded', function () {
   handle.addEventListener('touchstart', startDrag);
 
   function startDrag(e) {
-    isDraggingSheet = true;
-    startY = e.touches ? e.touches[0].clientY : e.clientY;
-    projectsBanner.style.transition = 'none';
+  isDraggingSheet = true;
+  document.body.style.overflow = 'hidden'; // 🧊 freeze background scroll
+  startY = e.touches ? e.touches[0].clientY : e.clientY;
+  projectsBanner.style.transition = '';
 
-    document.addEventListener('mousemove', drag);
-    document.addEventListener('touchmove', drag);
-    document.addEventListener('mouseup', endDrag);
-    document.addEventListener('touchend', endDrag);
-  }
+  document.addEventListener('mousemove', drag);
+  document.addEventListener('touchmove', drag, { passive: false }); // 👈 important
+  document.addEventListener('mouseup', endDrag);
+  document.addEventListener('touchend', endDrag);
+}
 
   function drag(e) {
     if (!isDraggingSheet) return;
+    e.preventDefault(); 
     currentY = e.touches ? e.touches[0].clientY : e.clientY;
     const diff = currentY - startY;
     const bannerHeight = projectsBanner.offsetHeight;
@@ -97,6 +99,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function endDrag() {
     isDraggingSheet = false;
+    document.body.style.overflow = ''; // ✅ restore background scroll
     projectsBanner.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
 
     const currentTranslate = parseFloat(projectsBanner.style.transform.match(/-?\d+(\.\d+)?/)[0]);
@@ -163,7 +166,6 @@ document.addEventListener('DOMContentLoaded', function () {
       dragCursor.classList.add('active');
       dragCursor.style.left = `${e.clientX}px`;
       dragCursor.style.top = `${e.clientY}px`;
-      e.dataTransfer.setData('text/plain', card.dataset.project);
       e.dataTransfer.effectAllowed = 'copy';
       visualizerPlaceholder.classList.add('highlight');
     });
@@ -231,3 +233,5 @@ document.addEventListener('DOMContentLoaded', function () {
     if (e.key === 'Escape' && visualizer.classList.contains('active')) closeVisualizer();
   });
 });
+
+
