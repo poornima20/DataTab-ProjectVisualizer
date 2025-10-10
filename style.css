@@ -477,11 +477,11 @@ body::-webkit-scrollbar {
 }
 
 #dragHandle {
-  touch-action: none;
-  -webkit-user-select: none;
+  cursor: pointer;
   user-select: none;
-  cursor: grab;
+  -webkit-tap-highlight-color: transparent;
 }
+
 
 
 

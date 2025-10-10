@@ -234,4 +234,16 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 });
 
-
+/* ============================
+   🖱️ Handle Click to Toggle Banner
+============================ */
+handle.addEventListener('click', (e) => {
+  // Prevent click from triggering unwanted drags
+  if (!isDraggingSheet) {
+    if (projectsBanner.classList.contains('show')) {
+      closeBanner();
+    } else {
+      openBanner();
+    }
+  }
+});
